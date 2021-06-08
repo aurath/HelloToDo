@@ -1,27 +1,58 @@
-﻿using System.IO;
+﻿
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace HelloToDo
 {
     public interface ITodoTaskSerializer
     {
-        ToDoTask Read(string path);
+        IEnumerable<ToDoTask> Read(Stream inputStream);
 
-        void Write(string path, ToDoTask task);
+        IEnumerable<ToDoTask> Read(FileInfo file);
+
+        IEnumerable<ToDoTask> Read(string text);
+
+        void Write(Stream stream, IEnumerable<ToDoTask> tasks);
+
+        void Write(FileInfo file, IEnumerable<ToDoTask> tasks);
+
+        string Write(IEnumerable<ToDoTask> tasks);
     }
 
     public class ToDoTaskJsonSerializer : ITodoTaskSerializer
     {
-        public ToDoTask Read(string path)
+        private readonly JsonSerializerOptions _options = new()
         {
-            return JsonSerializer.Deserialize<ToDoTask>(path);
+            WriteIndented = true
+        };
+
+        public IEnumerable<ToDoTask> Read(Stream stream)
+        {
+            using var reader = new StreamReader(stream);
+            var json = reader.ReadToEnd();
+            return Read(json);
         }
 
-        public void Write(string path, ToDoTask task)
+        public IEnumerable<ToDoTask> Read(FileInfo file) => Read(file.OpenRead());
+
+        public IEnumerable<ToDoTask> Read(string text) => JsonSerializer.Deserialize<List<ToDoTask>>(text);
+
+        public void Write(Stream stream, IEnumerable<ToDoTask> tasks)
         {
-            using var stream = new FileStream(path, FileMode.Create);
-            using var writer = new Utf8JsonWriter(stream);
-            JsonSerializer.Serialize(writer, task);
+            using var writer = new StreamWriter(stream);
+            var json = Write(tasks);
+            writer.Write(json);
         }
+
+        public void Write(FileInfo file, IEnumerable<ToDoTask> tasks)
+        {
+            using var stream = file.Open(FileMode.Create);
+            Write(stream, tasks);
+        }
+
+        public string Write(IEnumerable<ToDoTask> tasks) => JsonSerializer.Serialize(tasks.ToList(), _options);
     }
 }

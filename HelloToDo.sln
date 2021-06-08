@@ -3,9 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloToDo", "HelloToDo\HelloToDo.csproj", "{263CED7A-E72D-455B-ACFA-DB56E6F16871}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloToDo", "HelloToDo\HelloToDo.csproj", "{263CED7A-E72D-455B-ACFA-DB56E6F16871}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloToDo.Terminal", "HelloToDo.Terminal\HelloToDo.Terminal.csproj", "{8A525A16-6E80-4ED1-B0A7-E4A373B3967D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloToDo.Terminal", "HelloToDo.Terminal\HelloToDo.Terminal.csproj", "{8A525A16-6E80-4ED1-B0A7-E4A373B3967D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1F974F19-D7B5-478A-B584-1D10396E83E8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloToDo.Tests", "HelloToDo.Tests\HelloToDo.Tests.csproj", "{3D5F12CF-368D-4797-B2E6-92D7DB44F700}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloToDo.Desktop", "HelloToDo.Desktop\HelloToDo.Desktop.csproj", "{03C3DAC5-06EB-440A-8BF4-FE6A0901B57E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +27,20 @@ Global
 		{8A525A16-6E80-4ED1-B0A7-E4A373B3967D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A525A16-6E80-4ED1-B0A7-E4A373B3967D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A525A16-6E80-4ED1-B0A7-E4A373B3967D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D5F12CF-368D-4797-B2E6-92D7DB44F700}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D5F12CF-368D-4797-B2E6-92D7DB44F700}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D5F12CF-368D-4797-B2E6-92D7DB44F700}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D5F12CF-368D-4797-B2E6-92D7DB44F700}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03C3DAC5-06EB-440A-8BF4-FE6A0901B57E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03C3DAC5-06EB-440A-8BF4-FE6A0901B57E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03C3DAC5-06EB-440A-8BF4-FE6A0901B57E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03C3DAC5-06EB-440A-8BF4-FE6A0901B57E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3D5F12CF-368D-4797-B2E6-92D7DB44F700} = {1F974F19-D7B5-478A-B584-1D10396E83E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B8356DAC-0529-4C20-851B-F8E5774FBD80}

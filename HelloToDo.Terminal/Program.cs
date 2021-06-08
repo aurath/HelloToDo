@@ -1,12 +1,19 @@
-﻿using System;
+﻿using CommandLine;
+using HelloToDo.Terminal.Verbs;
 
 namespace HelloToDo.Terminal
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public const string DataDirectoryName = @"ToDo";
+        public const string SettingsFileName = @"settings.yml";
+        public const string TaskFileName = "tasks.json";
+
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Parser.Default
+                .ParseArguments<ListVerb, AddVerb, CheckVerb, RemoveVerb, CleanVerb>(args)
+                .WithParsed<VerbBase>(o => o.Execute());
         }
     }
 }

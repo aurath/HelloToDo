@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace HelloToDo
 {
@@ -7,25 +8,21 @@ namespace HelloToDo
         public ToDoTask(string title)
         {
             Title = title ?? throw new ArgumentNullException(nameof(title));
-            CreatedAt = DateTime.Now;
+
+            Hidden = false;
         }
 
-        public string Title { get; }
+        [Key]
+        public Guid Id { get; set; } = Guid.NewGuid();
 
-        public bool Complete
-        {
-            get => _complete;
-            set
-            {
-                _complete = value;
-                if (value) CompletedAt = DateTime.Now;
-            }
-        }
+        public string Title { get; set; }
 
-        private bool _complete;
+        public bool Complete { get; set; }
 
-        public DateTime CreatedAt { get; }
+        public DateTime CreatedAt { get; set; }
 
-        public DateTime? CompletedAt { get; private set; }
+        public DateTime? CompletedAt { get; set; }
+
+        public bool Hidden { get; set; }
     }
 }
